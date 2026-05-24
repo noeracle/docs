@@ -1,4 +1,7 @@
-# Integration
+---
+title: Integration
+description: Three integration patterns — inline verification, cached read, and live SSE subscription.
+---
 
 Noeracle supports three integration patterns. Pick by the structure of your consumer contract.
 
@@ -100,6 +103,6 @@ The connection reconnects automatically on transient errors. Each round (every 2
 
 ## See also
 
-- [SDK reference](reference/sdk.md) — every method and error type
-- [Contract reference](reference/contract.md) — entrypoints, errors, signed message layout
-- [Threat model](threat-model.md) — what v0 protects against and what it doesn't
+- [SDK reference](/reference/sdk/) — every method and error type
+- [Contract reference](/reference/contract/) — entrypoints, errors, signed message layout
+- [Threat model](/threat-model/) — what v0 protects against and what it doesn't

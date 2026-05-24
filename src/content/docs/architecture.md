@@ -1,4 +1,7 @@
-# Architecture
+---
+title: Architecture
+description: System design — data sources, attestation service, SDK, and on-chain contract.
+---
 
 Noeracle has three components: data sources, an off-chain attestation service, and an on-chain Soroban contract. The TypeScript SDK is the seam between off-chain and on-chain.
 
@@ -84,5 +87,5 @@ Two checks inside the contract entrypoint prevent abuse on the pull path:
 
 ## See also
 
-- [Threat model](threat-model.md) — v0 trust assumptions, attack surface, mitigations
-- [Roadmap](roadmap.md) — v0 → v1 → v2 → v3
+- [Threat model](/threat-model/) — v0 trust assumptions, attack surface, mitigations
+- [Roadmap](/roadmap/) — v0 → v1 → v2 → v3

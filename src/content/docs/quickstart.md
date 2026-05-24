@@ -1,4 +1,7 @@
-# Quickstart
+---
+title: Quickstart
+description: Integrate Noeracle into a Soroban consumer transaction in under 10 lines of TypeScript.
+---
 
 Integrate Noeracle into a Soroban consumer transaction in under 10 lines of TypeScript.
 
@@ -37,6 +40,6 @@ await server.sendTransaction(tx);
 
 ## Next
 
-- [Integration guide](integration.md) — the in-contract verification pattern, the best-effort cache pattern, and the SSE subscribe pattern.
-- [SDK reference](reference/sdk.md) — the full TypeScript API.
+- [Integration guide](/integration/) — the in-contract verification pattern, the best-effort cache pattern, and the SSE subscribe pattern.
+- [SDK reference](/reference/sdk/) — the full TypeScript API.
 - [Examples](https://github.com/noeracle/noeracle/tree/main/sdk/examples) — runnable end-to-end code.

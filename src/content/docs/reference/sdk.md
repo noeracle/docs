@@ -1,4 +1,7 @@
-# SDK reference
+---
+title: SDK reference
+description: The @noeracle/sdk TypeScript client — methods, types, and errors.
+---
 
 `@noeracle/sdk` — the TypeScript client for Noeracle.
 
@@ -55,7 +58,7 @@ Returned by `fetchLatest`. Carries the raw signed attestations and the helpers f
 | `toUpdateOp(contractId?)` | `(id?: string) => xdr.Operation` | Build the standalone `update_batch_ed25519_args` operation |
 | `updateArgs()` | `() => xdr.ScVal[]` | The six ScVal arguments for in-contract verification |
 
-`updateArgs()` returns `[assets, prices, timestamp, round_id, pubkey, sigs]`. Spread into your own contract call when using [Pattern B](../integration.md#pattern-b--inline-verification-inside-your-contract).
+`updateArgs()` returns `[assets, prices, timestamp, round_id, pubkey, sigs]`. Spread into your own contract call when using [Pattern B](/integration/#pattern-b--inline-verification-inside-your-contract).
 
 ## `PriceEntry`
 

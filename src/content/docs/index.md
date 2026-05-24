@@ -1,4 +1,7 @@
-# Noeracle
+---
+title: Noeracle
+description: On-demand price oracle for Stellar.
+---
 
 Noeracle is an on-demand price oracle for Stellar.
 
@@ -21,11 +24,11 @@ Noeracle is the complement to Reflector, not a replacement. Reflector pre-warms 
 | Freshness SLA | ≤2 seconds (testnet) |
 | Source | [`noeracle/noeracle`](https://github.com/noeracle/noeracle) |
 
-v0 runs a single self-operated signer and has not been independently audited. **Not for production capital.** A multi-publisher, audited mainnet version is the subject of [SCF #44](https://communityfund.stellar.org/).
+v0 runs a single self-operated signer and has not been independently audited. **Not for production capital.** A multi-publisher, audited mainnet version is in active development.
 
 ## Get started
 
-- [Quickstart](quickstart.md) — integrate in under 10 lines
-- [Integration guide](integration.md) — every pattern with code
-- [SDK reference](reference/sdk.md) · [Contract reference](reference/contract.md)
-- [Architecture](architecture.md) · [Threat model](threat-model.md) · [Roadmap](roadmap.md)
+- [Quickstart](/quickstart/) — integrate in under 10 lines
+- [Integration guide](/integration/) — every pattern with code
+- [SDK reference](/reference/sdk/) · [Contract reference](/reference/contract/)
+- [Architecture](/architecture/) · [Threat model](/threat-model/) · [Roadmap](/roadmap/)

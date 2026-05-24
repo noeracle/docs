@@ -1,4 +1,7 @@
-# Threat model
+---
+title: Threat model
+description: v0 trust assumptions, what's protected, and what arrives in v1.
+---
 
 This page covers v0 only — the testnet prototype. The v1 threat model replaces this page when v1 ships.
 
@@ -51,5 +54,5 @@ Email `security@noeracle.org`. A formal disclosure policy and bug bounty pool sh
 
 ## See also
 
-- [Architecture](architecture.md) — replay protection mechanics, freshness layers, signature scheme rationale
-- [Roadmap](roadmap.md) — what arrives in v1, v2, v3
+- [Architecture](/architecture/) — replay protection mechanics, freshness layers, signature scheme rationale
+- [Roadmap](/roadmap/) — what arrives in v1, v2, v3

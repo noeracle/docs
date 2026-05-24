@@ -1,4 +1,7 @@
-# Contract reference
+---
+title: Contract reference
+description: Soroban contract entrypoints, errors, signed message format, and storage model.
+---
 
 The Noeracle Soroban contract verifies signed prices inline in a consumer transaction and exposes a free best-effort read for the cache.
 
