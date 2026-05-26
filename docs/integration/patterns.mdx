@@ -1,7 +1,9 @@
 ---
-title: Integration
+title: Integration patterns
 description: Three integration patterns — inline verification, cached read, and live SSE subscription.
 ---
+
+# Integration patterns
 
 Noeracle supports three integration patterns. Pick by the structure of your consumer contract.
 
@@ -88,7 +90,7 @@ const sub = oracle.subscribe(["BTC/USD", "ETH/USD"], (fresh) => {
 sub.close();
 ```
 
-The connection reconnects automatically on transient errors. Each round (every 2 seconds on testnet) fires `onUpdate` with a `Fresh` for the requested assets.
+The connection reconnects automatically on transient errors. Each round (every 500 ms on testnet) fires `onUpdate` with a `Fresh` for the requested assets.
 
 ## Failure modes
 
@@ -103,6 +105,6 @@ The connection reconnects automatically on transient errors. Each round (every 2
 
 ## See also
 
-- [SDK reference](/reference/sdk/) — every method and error type
-- [Contract reference](/reference/contract/) — entrypoints, errors, signed message layout
-- [Threat model](/threat-model/) — what v0 protects against and what it doesn't
+- [**SDK reference**](/reference/sdk) — every method and error type
+- [**Contract reference**](/reference/contract) — entrypoints, errors, signed message layout
+- [**Threat model**](/concepts/threat-model) — what v0 protects against and what it doesn't

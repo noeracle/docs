@@ -1,8 +1,8 @@
-# Build output
-dist/
-
-# Astro cache
-.astro/
+# Docusaurus
+docs_website/node_modules/
+docs_website/build/
+docs_website/.docusaurus/
+docs_website/.cache-loader/
 
 # Node
 node_modules/

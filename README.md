@@ -1,34 +1,47 @@
 # noeracle/docs
 
-Documentation source for [Noeracle](https://noeracle.org) — the on-demand price oracle for Stellar.
+Source for **[docs.noeracle.org](https://docs.noeracle.org)** — the user-facing
+documentation for [Noeracle](https://noeracle.org), the pull-based price oracle
+for Stellar.
 
-Rendered at **https://docs.noeracle.org**.
+## Layout
 
-Built with [Astro Starlight](https://starlight.astro.build/), deployed on Cloudflare Pages.
+| Path | What |
+|---|---|
+| `docs/` | The canonical MDX content. Source of truth for every page. |
+| `docs_website/` | Docusaurus 3.10 build harness. Reads from `../docs`. |
 
 ## Pages
 
-- [Introduction](src/content/docs/index.md)
-- [Quickstart](src/content/docs/quickstart.md)
-- [Integration](src/content/docs/integration.md)
-- [SDK reference](src/content/docs/reference/sdk.md)
-- [Contract reference](src/content/docs/reference/contract.md)
-- [Architecture](src/content/docs/architecture.md)
-- [Threat model](src/content/docs/threat-model.md)
-- [Roadmap](src/content/docs/roadmap.md)
+- `docs/intro.mdx` — landing
+- `docs/get-started/quickstart.mdx`
+- `docs/integration/patterns.mdx`
+- `docs/concepts/architecture.mdx`
+- `docs/concepts/threat-model.mdx`
+- `docs/reference/sdk.mdx`
+- `docs/reference/contract.mdx`
+- `docs/project/roadmap.mdx`
 
 ## Develop
 
 ```bash
+cd docs_website
 npm install
-npm run dev      # local dev server at http://localhost:4321
-npm run build    # static build to ./dist
-npm run preview  # serve the production build locally
+npm start        # http://localhost:3000  — hot reload
+npm run build    # static build → docs_website/build/
+npm run serve    # serve the production build locally
 ```
+
+## Deploy
+
+Pushes to `main` auto-deploy via Vercel to **docs.noeracle.org**. The Vercel
+project's **Root Directory** is set to `docs_website`.
 
 ## Contributing
 
-Issues and PRs welcome. Each page targets one screen of reading; keep prose tight and code examples copy-pasteable.
+Each page targets one screen of reading. Keep prose tight, code examples
+copy-pasteable, and tables one line per row. Sidebar order is explicit in
+`docs_website/sidebars.ts`.
 
 ## License
 

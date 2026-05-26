@@ -3,6 +3,8 @@ title: SDK reference
 description: The @noeracle/sdk TypeScript client — methods, types, and errors.
 ---
 
+# SDK reference
+
 `@noeracle/sdk` — the TypeScript client for Noeracle.
 
 ## Install
@@ -58,7 +60,7 @@ Returned by `fetchLatest`. Carries the raw signed attestations and the helpers f
 | `toUpdateOp(contractId?)` | `(id?: string) => xdr.Operation` | Build the standalone `update_batch_ed25519_args` operation |
 | `updateArgs()` | `() => xdr.ScVal[]` | The six ScVal arguments for in-contract verification |
 
-`updateArgs()` returns `[assets, prices, timestamp, round_id, pubkey, sigs]`. Spread into your own contract call when using [Pattern B](/integration/#pattern-b--inline-verification-inside-your-contract).
+`updateArgs()` returns `[assets, prices, timestamp, round_id, pubkey, sigs]`. Spread into your own contract call when using [Pattern B](/integration/patterns#pattern-b--inline-verification-inside-your-contract).
 
 ## `PriceEntry`
 
@@ -70,6 +72,25 @@ type PriceEntry = {
   timestamp: number;   // unix seconds
   roundId: number;     // monotonic per-asset
   sources: number;     // exchanges aggregated
+};
+```
+
+## `Attestation`
+
+The raw signed attestation, exactly as served by the attestation service.
+
+```ts
+type Attestation = {
+  asset: string;
+  tag: string;
+  price: string;        // i128 scaled by 1e7, as decimal string
+  price_human: number;
+  timestamp: number;    // unix seconds
+  round_id: number;
+  sources: number;
+  publisher: string;    // Ed25519 public key, 32-byte hex
+  message: string;      // signed 40-byte payload, hex
+  signature: string;    // Ed25519 signature, 64-byte hex
 };
 ```
 
