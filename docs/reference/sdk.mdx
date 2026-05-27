@@ -7,11 +7,30 @@ description: The @noeracle/sdk TypeScript client — methods, types, and errors.
 
 `@noeracle/sdk` — the TypeScript client for Noeracle.
 
+Package: [`@noeracle/sdk`](https://www.npmjs.com/package/@noeracle/sdk) on npm.
+
 ## Install
 
 ```bash
 npm install @noeracle/sdk @stellar/stellar-sdk
 ```
+
+## Quickstart
+
+```ts
+import { Noeracle } from "@noeracle/sdk";
+
+const oracle = new Noeracle({ network: "testnet" });
+
+// Fetch a freshly signed price.
+const fresh = await oracle.fetchLatest(["BTC/USD"]);
+
+// Prepend the verification op, then your own application op(s).
+tx.addOperation(fresh.toUpdateOp(ORACLE_CONTRACT_ID));
+tx.addOperation(myContract.call("open_position" /* , ... */));
+```
+
+Asset names follow the `"BASE/QUOTE"` convention (e.g. `"BTC/USD"`, `"ETH/USD"`).
 
 ## `new Noeracle(config?)`
 
@@ -46,7 +65,25 @@ oracle.subscribe(
 ): Subscription
 ```
 
-Opens an SSE connection that delivers a `Fresh` for the requested assets each time the attestation service signs a new round. Reconnects automatically on transient errors. Call `.close()` on the returned `Subscription` to stop.
+Opens an SSE connection that delivers a `Fresh` for the requested assets each time the attestation service signs a new round (~500 ms cadence on testnet). Reconnects automatically on transient errors. This is the [Pattern C](/integration/patterns#pattern-c--live-sse-subscription) integration.
+
+```ts
+const sub = oracle.subscribe(
+  ["BTC/USD"],
+  (fresh) => console.log(fresh.price("BTC/USD").priceHuman),
+);
+
+// Later, stop the stream:
+sub.close();
+```
+
+### `Subscription`
+
+```ts
+interface Subscription {
+  close(): void;
+}
+```
 
 ## `Fresh`
 
@@ -57,7 +94,7 @@ Returned by `fetchLatest`. Carries the raw signed attestations and the helpers f
 | `attestations` | `Attestation[]` | Raw signed messages, one per requested asset |
 | `prices` | `PriceEntry[]` | Decoded prices |
 | `price(asset)` | `(asset: string) => PriceEntry` | Look up the decoded price for one asset |
-| `toUpdateOp(contractId?)` | `(id?: string) => xdr.Operation` | Build the standalone `update_batch_ed25519_args` operation |
+| `toUpdateOp(contractId?)` | `(id?: string) => xdr.Operation` | Build the standalone `update_batch_ed25519_args` operation — [Pattern A](/integration/patterns#pattern-a--standalone-update--cached-read) |
 | `updateArgs()` | `() => xdr.ScVal[]` | The six ScVal arguments for in-contract verification |
 
 `updateArgs()` returns `[assets, prices, timestamp, round_id, pubkey, sigs]`. Spread into your own contract call when using [Pattern B](/integration/patterns#pattern-b--inline-verification-inside-your-contract).
