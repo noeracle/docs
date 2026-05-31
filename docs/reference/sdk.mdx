@@ -118,8 +118,9 @@ The raw signed attestation, exactly as served by the attestation service.
 
 ```ts
 type Attestation = {
-  asset: string;
-  tag: string;
+  asset: string;        // display name, e.g. "BTC/USD"
+  tag: string;          // 8-byte on-chain asset tag, hex — e.g. "4254435553440000".
+                        // Pass to a Soroban consumer's `BytesN<8>` field when validating.
   price: string;        // i128 scaled by 1e7, as decimal string
   price_human: number;
   timestamp: number;    // unix seconds
@@ -130,6 +131,8 @@ type Attestation = {
   signature: string;    // Ed25519 signature, 64-byte hex
 };
 ```
+
+The `asset` field is the human-readable display name the SDK accepts as input; the `tag` field is the 8-byte identifier the on-chain contract sees in the signed message. They are not interchangeable — for `BTC/USD` the display is `"BTC/USD"` but the on-chain tag is `"4254435553440000"` (= `b"BTCUSD\0\0"`). See [Asset tags](/reference/contract).
 
 ## Errors
 
