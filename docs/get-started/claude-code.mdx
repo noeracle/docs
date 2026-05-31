@@ -1,0 +1,64 @@
+---
+id: claude-code
+title: Claude Code skill
+sidebar_label: Claude Code
+description: Install the noeracle Claude Code skill so an AI agent can scaffold and deploy a Soroban consumer in one prompt.
+---
+
+If you're using [Claude Code](https://claude.com/claude-code) to build your Stellar Istanbul hackathon project, install the **noeracle skill**. It teaches Claude the full integration pattern — Pattern A vs B, the asset-tag table, the tool-version gotchas, and the deploy walkthrough — so one prompt is enough to scaffold a working consumer.
+
+## Install
+
+```bash
+git clone https://github.com/noeracle/docs ~/noeracle-docs
+mkdir -p ~/.claude/skills
+cp -r ~/noeracle-docs/claude-code/noeracle ~/.claude/skills/
+```
+
+Verify:
+
+```bash
+ls ~/.claude/skills/noeracle/
+# SKILL.md  REFERENCE.md  templates/  INSTALL.md
+```
+
+## Use it
+
+Open Claude Code in any directory and describe what you're building:
+
+```text
+> I want to build a perpetual DEX MVP on Stellar that uses BTC/USD prices from noeracle.
+```
+
+Claude detects the noeracle skill is relevant and walks you through:
+
+1. Tool-version checks (`stellar-cli >= 26`, `@stellar/stellar-sdk >= 14.4`, `wasm32v1-none` target).
+2. Scaffolding a Pattern B Soroban contract from the template.
+3. Writing unit tests with a mock oracle.
+4. Building the WASM and deploying to testnet.
+5. Init'ing with the correct asset tag (`0x4254435553440000` for BTC/USD — see [Contract reference](/reference/contract)).
+6. Running an end-to-end demo against the live attestation service.
+
+You can also nudge the skill explicitly:
+
+```text
+> Use the noeracle skill to scaffold a prediction market that settles on BTC/USD in 24h.
+```
+
+## What's inside
+
+| File | Purpose |
+| --- | --- |
+| `SKILL.md` | The main playbook Claude reads — patterns, gotchas, recipe |
+| `REFERENCE.md` | Deep reference (architecture diagram, contract spec, threat model) |
+| `templates/consumer/` | `Cargo.toml`, `lib.rs`, `test.rs` — a Pattern B skeleton you can fork |
+| `templates/demo/` | `package.json`, `demo.mjs` — a TypeScript demo client |
+| `templates/deploy.sh` | One-shot build + deploy + init script |
+
+## Without Claude Code
+
+If you're not using Claude Code, the same templates are valid as a hand-rolled starting point. Clone the repo and copy `claude-code/noeracle/templates/` into your project. The [Quickstart](/get-started/quickstart) and [Integration patterns](/integration/patterns) pages cover the same content in long form.
+
+## Reporting issues
+
+Skill bugs, template errors, or doc gaps: open an issue at [`noeracle/docs`](https://github.com/noeracle/docs/issues). For oracle / SDK bugs use [`noeracle/noeracle`](https://github.com/noeracle/noeracle/issues).
