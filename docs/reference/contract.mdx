@@ -13,6 +13,22 @@ The Noeracle Soroban contract verifies signed prices inline in a consumer transa
 | Contract | [`CAYIP67UDVX5UPXGN3XDAWVIEFBAVG6G7LUESEOU3NUQKTWN55W34YBG`](https://stellar.expert/explorer/testnet/contract/CAYIP67UDVX5UPXGN3XDAWVIEFBAVG6G7LUESEOU3NUQKTWN55W34YBG) |
 | Source | [`oracle_v0/`](https://github.com/noeracle/noeracle/tree/main/oracle_v0) |
 
+## Asset tags
+
+On-chain the asset is identified by an 8-byte `BytesN<8>` — the first 8 bytes of the signed message. The JS SDK accepts a display name like `"BTC/USD"` and translates internally. A Soroban consumer that validates the tag (Pattern B) needs the bytes directly:
+
+| Display | On-chain tag (hex) | Literal bytes |
+|---|---|---|
+| `BTC/USD` | `0x4254435553440000` | `b"BTCUSD\0\0"` |
+
+:::warning Footgun
+
+`b"BTC/USD\0"` (with the slash) is **not** the on-chain tag. A consumer init'd with that will reject every real attestation as `WrongAsset` and silently lose every settlement. Confirm with the first 8 bytes of `fresh.attestations[0].message`, or read the `tag` field on an `Attestation`.
+
+:::
+
+For the live feed list, call `GET https://api.noeracle.org/v1/latest` and read each entry's `tag` field.
+
 ## Entrypoints
 
 ### `update_batch_ed25519_args`

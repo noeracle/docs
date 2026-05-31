@@ -9,6 +9,24 @@ import { NoeracleQuickstart } from '@site/src/components/NoeracleQuickstart';
 
 Integrate Noeracle into a Soroban consumer transaction in under 10 lines of TypeScript.
 
+## Requirements
+
+v0 runs against Stellar testnet protocol 23. Older tools fail with cryptic errors — pin these versions before you start:
+
+- **`stellar-cli` ≥ 26.x.** Homebrew's 22.x fails uploads with `xdr processing error: xdr value invalid`. Install with `cargo install stellar-cli --locked`, then run `stellar config migrate` once if upgrading from an older CLI.
+- **`@stellar/stellar-sdk` ≥ 14.4.x.** 13.x fails parsing testnet tx info with `TypeError: Bad union switch: 4`.
+- **`soroban-sdk = "26.0.0"`** in your consumer's `Cargo.toml`.
+- **Rust target `wasm32v1-none`** (not `wasm32-unknown-unknown`). `rustup target add wasm32v1-none`. Build with `cargo build --target wasm32v1-none --release`.
+- **Node ≥ 18.**
+
+## Supported feeds (testnet)
+
+| Asset | On-chain tag (hex) | Notes |
+|---|---|---|
+| `BTC/USD` | `0x4254435553440000` | v0 launch feed |
+
+Live list: `curl https://api.noeracle.org/v1/latest | jq '.assets | keys'`. ETH/USD, XLM/USD, USDC/USD are planned for v1; FX, NAV, and TWAP feeds in v2. See the [roadmap](/project/roadmap).
+
 ## Install
 
 ```bash
