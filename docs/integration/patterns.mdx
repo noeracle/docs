@@ -77,6 +77,20 @@ pub fn open_position_with_price(
 
 **When to use.** You control the consumer contract and want the verified price used inline, with no possibility of another consumer's tx changing the cache between verify and read.
 
+:::warning Replay window
+
+The oracle's 60-second freshness check guarantees the attestation was signed within the last 60 seconds. It does **not** guarantee the attestation was signed inside your consumer's logical time window. For settlement, liquidation, or auction logic, enforce a stronger temporal check in the consumer body:
+
+```rust
+if timestamp < my_window_start {
+    return Err(Error::PriceBeforeWindow);
+}
+```
+
+Without that check, an attacker can replay a ≤60 s old attestation to settle an event that was supposed to settle "now".
+
+:::
+
 ## Pattern C — Live SSE subscription
 
 For long-running clients (UIs, keepers, market-makers) that want to hold a fresh price in memory without polling.
