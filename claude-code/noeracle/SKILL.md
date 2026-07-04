@@ -204,6 +204,20 @@ On-chain the asset is identified by an 8-byte `BytesN<8>` from the first 8 bytes
 | Display | On-chain tag (hex) | Literal bytes |
 | --- | --- | --- |
 | `BTC/USD` | `0x4254435553440000` | `b"BTCUSD\0\0"` |
+| `ETH/USD` | `0x4554485553440000` | `b"ETHUSD\0\0"` |
+| `XLM/USD` | `0x584C4D5553440000` | `b"XLMUSD\0\0"` |
+| `USDC/USD` | `0x5553444355534400` | `b"USDCUSD\0"` |
+| `SOL/USD` | `0x534F4C5553440000` | `b"SOLUSD\0\0"` |
+| `XRP/USD` | `0x5852505553440000` | `b"XRPUSD\0\0"` |
+| `ADA/USD` | `0x4144415553440000` | `b"ADAUSD\0\0"` |
+| `BNB/USD` | `0x424E425553440000` | `b"BNBUSD\0\0"` |
+| `TRX/USD` | `0x5452585553440000` | `b"TRXUSD\0\0"` |
+| `HYPE/USD` | `0x4859504555534400` | `b"HYPEUSD\0"` |
+| `DOGE/USD` | `0x444F474555534400` | `b"DOGEUSD\0"` |
+| `ZEC/USD` | `0x5A45435553440000` | `b"ZECUSD\0\0"` |
+| `LINK/USD` | `0x4C494E4B55534400` | `b"LINKUSD\0"` |
+| `BCH/USD` | `0x4243485553440000` | `b"BCHUSD\0\0"` |
+| `LTC/USD` | `0x4C54435553440000` | `b"LTCUSD\0\0"` |
 
 To confirm or get the tag for any feed at runtime, decode the first 8 bytes of `fresh.attestations[0].message` (which is hex of the 40-byte signed payload). For all currently-served feeds, call `GET https://api.noeracle.org/v1/latest` and read the `tag` field on each entry.
 

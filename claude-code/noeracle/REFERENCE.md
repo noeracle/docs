@@ -172,8 +172,8 @@ All extend `NoeracleError`:
 
 **Open (mitigate at v1):**
 - single publisher key compromise → full oracle compromise
-- single attestation-service instance (Fly.io) → liveness SPOF
-- low-liquidity asset manipulation (5 source aggregate)
+- single operator for the attestation service (3 Fly.io regions, but one party)
+- low-liquidity asset manipulation (4–5 source aggregate)
 - no independent audit
 - MEV / front-running
 

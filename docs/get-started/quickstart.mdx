@@ -21,11 +21,20 @@ v0 runs against Stellar testnet protocol 23. Older tools fail with cryptic error
 
 ## Supported feeds (testnet)
 
-| Asset | On-chain tag (hex) | Notes |
-|---|---|---|
-| `BTC/USD` | `0x4254435553440000` | v0 launch feed |
+| Asset | On-chain tag (hex) | Asset | On-chain tag (hex) |
+|---|---|---|---|
+| `BTC/USD` | `0x4254435553440000` | `BNB/USD` | `0x424E425553440000` |
+| `ETH/USD` | `0x4554485553440000` | `TRX/USD` | `0x5452585553440000` |
+| `XLM/USD` | `0x584C4D5553440000` | `HYPE/USD` | `0x4859504555534400` |
+| `USDC/USD` | `0x5553444355534400` | `DOGE/USD` | `0x444F474555534400` |
+| `SOL/USD` | `0x534F4C5553440000` | `ZEC/USD` | `0x5A45435553440000` |
+| `XRP/USD` | `0x5852505553440000` | `LINK/USD` | `0x4C494E4B55534400` |
+| `ADA/USD` | `0x4144415553440000` | `BCH/USD` | `0x4243485553440000` |
+| `LTC/USD` | `0x4C54435553440000` | | |
 
-Live list: `curl https://api.noeracle.org/v1/latest | jq '.assets | keys'`. ETH/USD, XLM/USD, USDC/USD are planned for v1; FX, NAV, and TWAP feeds in v2. See the [roadmap](/project/roadmap).
+Each feed aggregates 4–5 exchange sources; every attestation carries its own
+`sources` count. Live list: `curl https://api.noeracle.org/v1/latest | jq '.assets | keys'`.
+FX, NAV, and TWAP feeds arrive in v2 — see the [roadmap](/project/roadmap).
 
 ## Install
 
